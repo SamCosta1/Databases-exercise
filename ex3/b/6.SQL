@@ -9,3 +9,4 @@ SELECT ID,
        'Fall',
        2009
 FROM   student;
+WHERE  dept_name='Comp.Sci.'
