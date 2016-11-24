@@ -1,3 +1,4 @@
+-- 1a (i)
 SELECT
 DISTINCT    name AS "Student Name"
 FROM        student

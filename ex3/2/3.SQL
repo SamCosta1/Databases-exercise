@@ -1,7 +1,12 @@
-SELECT  DISTINCT person.name,
-        SUM(damage_amount) OVER (PARTITION BY person.driver_id) AS "Total Dmge"
-FROM    person
-INNER JOIN participated
-ON      participated.driver_id=person.driver_id
-ORDER
-BY      "Total Dmg" ASC;
+SELECT  *
+FROM
+(
+    SELECT      name,
+                SUM(damage_amount) AS "TOTAL_DAMAGE"
+    FROM        person
+    INNER JOIN  participated
+    ON          person.driver_id=participated.driver_id
+    GROUP BY    name
+)
+WHERE       TOTAL_DAMAGE > 3000
+ORDER BY    TOTAL_DAMAGE ASC;

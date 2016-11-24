@@ -8,5 +8,5 @@ SELECT ID,
        1,
        'Fall',
        2009
-FROM   student;
-WHERE  dept_name='Comp.Sci.'
+FROM   student
+--WHERE  dept_name='Comp. Sci.';
