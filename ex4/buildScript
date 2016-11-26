@@ -1,0 +1,6 @@
+echo "" >  EX03-9708530.SQL
+for i in 1*.SQL
+do
+    cat $i >> EX03-9708530.SQL
+    echo " " >> EX03-9708530.SQL
+done
