@@ -5,26 +5,22 @@ SET LONG 999999;
 COLUMN "Picture" FORMAT A7;
 
 CREATE OR REPLACE TRIGGER check_item_value
-    BEFORE INSERT OR UPDATE ON itemType
-    FOR EACH ROW
+    AFTER INSERT OR UPDATE ON itemType
     DECLARE
         min_price       float DEFAULT 0;
-        price_too_high  EXCEPTION;
+        max_price       float DEFAULT 0;
     BEGIN
         SELECT  MIN(price) INTO min_price
         FROM    itemType;
-        IF :new.price > min_price * 4
-        THEN
-            RAISE price_too_high;
-        END IF;
-    EXCEPTION
-        WHEN price_too_high
+
+        SELECT  MAX(price) INTO max_price
+        FROM    itemType;
+
+        IF max_price > min_price * 4
         THEN
             RAISE_APPLICATION_ERROR(num => -20000,
-                                    msg => 'Price too high');
-        WHEN OTHERS
-        THEN
-            NULL;
+                                    msg => 'Price too high'||max_price||' '||min_price);
+        END IF;
     END check_item_value;
 /
 
@@ -35,10 +31,12 @@ INSERT into itemType VALUES ('C3', 'The thing', '++-+-', 500.99, 'P');
 INSERT into itemType VALUES ('D1', 'The other thing', '++-+-', 43.97, 'P');
 INSERT into itemType VALUES ('D2', 'The 3rd thing', '++-+-', 60.99, 'P');
 INSERT into itemType VALUES ('D3', 'The 4th thing', '++-+-', 90.88, 'P');
+INSERT into itemType VALUES ('D4', 'The 5th thing', '++-+-', 10.88, 'P');
 
 -- State after insertions
 SELECT * FROM itemType;
 
+UPDATE itemType SET price=1 WHERE itemNum='A1';
 UPDATE itemType SET price=61.56  WHERE itemNum='A1';
 UPDATE itemType SET price=86.56  WHERE itemNum='A2';
 UPDATE itemType SET price=150.23 WHERE itemNum='A3';
