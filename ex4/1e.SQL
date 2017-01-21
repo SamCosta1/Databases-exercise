@@ -1,4 +1,5 @@
 -- 1e ------
+
 CREATE OR REPLACE VIEW carts_per_customer
 AS
     SELECT      loginName,
@@ -13,5 +14,5 @@ SELECT  loginName,
             WHEN    numOrders <= 2
             THEN    'BR-1 satisfied'
             ELSE    'BR-1 violated'
-        END
+        END AS BR_1
 FROM    carts_per_customer;

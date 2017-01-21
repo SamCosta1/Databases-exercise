@@ -1,6 +1,5 @@
 -- 1f ------
---COLUMN ITEMCOLOR FORMAT A9;
---COLUMN ITEMNUM FORMAT A7
+
 SELECT  itemNum,
         itemColor,
         itemSize
@@ -25,6 +24,3 @@ FROM
         )
     )
 WHERE BR_2='BR-2 violated';
-
-
---CLEAR COLUMNS

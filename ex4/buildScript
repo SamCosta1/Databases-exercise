@@ -1,6 +1,40 @@
-echo "" >  EX03-9708530.SQL
+echo "
+SET ECHO ON
+SPOOL /home/mbax4sd3/databases/ex4/EX04-9708530.SQL" >  EX04-9708530CODE.SQL
 for i in 1*.SQL
 do
-    cat $i >> EX03-9708530.SQL
-    echo " " >> EX03-9708530.SQL
+    cat $i >> EX04-9708530CODE.SQL
+    echo " " >> EX04-9708530CODE.SQL
 done
+echo "
+
+SPOOL OFF
+    " >>  EX04-9708530CODE.SQL
+{
+echo "
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\graphicspath{ {.} }
+\title{COMP23111 2016 - 2017\\ EX4}
+\author{Sameul Da Costa - 9708530}
+\begin{document}
+\maketitle
+
+\section{Comments}
+I have made the assumption that columns should be formatted in the individual
+exercises and that the formatting should be removed afterwords. This has lead to some repitition
+but overall I believe it splits the exercises up more effectively.
+
+Furthermore certain things in part 1g \emph{should} throw errors, please see comments for details
+\section{Code}
+\begin{lstlisting}"
+
+cat EX04-9708530.SQL
+echo "
+\end{lstlisting}
+\end{document}
+"
+} > EX04-9708530.tex
+pdflatex EX04-9708530.tex

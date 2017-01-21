@@ -1,0 +1,3 @@
+START /opt/info/courses/COMP23111/drop-Eclectic-Ecommerce-tables.sql;
+START /opt/info/courses/COMP23111/create-Eclectic-Ecommerce-tables.sql;
+START /opt/info/courses/COMP23111/populate-Eclectic-Ecommerce-tables.sql;

@@ -16,4 +16,8 @@ AS
                 firstName,
                 lastName;
 
+COLUMN FIRSTNAME FORMAT A10
+COLUMN LASTNAME FORMAT A10
+COLUMN ORDERCARTID FORMAT A12
 SELECT * FROM order_details;
+CLEAR COLUMNS

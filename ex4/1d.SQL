@@ -1,4 +1,6 @@
 -- 1d ------
+COLUMN FIRSTNAME FORMAT A10
+COLUMN LASTNAME FORMAT A10
 CREATE OR REPLACE VIEW customer_order_details
 AS
     SELECT      loginName,
@@ -11,3 +13,4 @@ AS
                 lastName;
 
 SELECT * FROM customer_order_details;
+CLEAR COLUMNS
